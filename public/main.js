@@ -14,13 +14,19 @@ function sendCoordinates(long, lat) {
 		lng: long,
 		lat: lat
 	};
-	fetch('https://localhost:8443/api/caches/', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(obj)
+	fetch(`https://localhost:8443/api/caches/?lng=${long}&lat=${lat}`, {
+		method: 'GET'
 	})
-	.then(res => res.json())
+	.then(res => {
+		.then(res => {
+			if(res.ok){
+				return res.json()
+			} else {
+				return Promise.reject(res);
+			}
+		})
+
+	})
 	.then(res => console.log(res))
+	.catch(err => console.log('Błąd: ', err));
 }

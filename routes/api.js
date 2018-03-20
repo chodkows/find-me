@@ -4,7 +4,7 @@ const Cache = require('../models/cache');
 
 
 
-router.post('/caches', (req, res, next) => {
+router.post('/', (req, res, next) => {
 	Cache.aggregate().near({
 		near:{
 			'type':'Point',
@@ -13,15 +13,9 @@ router.post('/caches', (req, res, next) => {
 		maxDistance: 100000,
 		spherical: true,
 		distanceField: 'dis'
-	}).then((caches) => {
-	//	console.log(caches);
-		res.json(caches);
+	}).then(caches => {
+		res.send(caches);
 	}).catch(err => console.log(err));
-
-	//wyciagniecie wszystkich danych
-	// Cache.find({}).then((caches) => {
-	// 	res.send(saches);
-	// })
 });
 
 router.post('/caches', (req, res, next) => {
