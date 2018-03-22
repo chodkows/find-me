@@ -4,16 +4,15 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs');
 const https = require('https');
-const httpServer = require('./routes/httpServer');
 
-const privateKey = fs.readFileSync('./key/key.pem', 'utf8');
-const certificate = fs.readFileSync('./key/cert.pem', 'utf8');
+const privateKey = fs.readFileSync('./config/key.pem', 'utf8');
+const certificate = fs.readFileSync('./config/cert.pem', 'utf8');
 
 const app = express();
-app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
-httpServer(app);
+
 const httpsServer = https.createServer({
 	key: privateKey,
 	cert: certificate
@@ -21,7 +20,6 @@ const httpsServer = https.createServer({
 
 app.use('/api', routes);
 app.use((err, req, res, next) => {
-	//console.log(err);
 	res.status(422).send({error: err.message});
 });
 

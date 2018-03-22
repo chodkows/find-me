@@ -4,17 +4,18 @@ const Cache = require('../models/cache');
 
 
 
-router.post('/', (req, res, next) => {
+router.get('/', (req, res, next) => {
 	Cache.aggregate().near({
 		near:{
 			'type':'Point',
-			'coordinates':[parseFloat(req.body.lng), parseFloat(req.body.lat)],
+			'coordinates':[parseFloat(req.query.lng), parseFloat(req.query.lat)],
 		},
 		maxDistance: 100000,
 		spherical: true,
 		distanceField: 'dis'
 	}).then(caches => {
-		res.send(caches);
+		res.append('Access-Control-Allow-Origin','*').json(caches);
+
 	}).catch(err => console.log(err));
 });
 

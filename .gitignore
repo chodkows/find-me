@@ -1,3 +1,7 @@
-key
-node_modules
+application/config/cert.pem
+application/config/key.pem
+application/config/keys.js
+application/node_modules
+api/config
+api/node_modules
 package-lock.json
