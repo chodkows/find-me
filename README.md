@@ -1,3 +1,39 @@
 Find me 
 
-Przed uruchomieniem aplikacji w katalogu głównym należy storzyć katalog 'key', w którym powinny znaleźć się klucz prywatny oraz certyfikat dla protokołu https -pliki cert.pem oraz key.pem. Dodatkowo aplikacja korzysta z bazy danych mongodb. W katalogu 'key' powinien znaleźć się również plik key.js, w którym znajduje się eksportowany obiekt: "module.exports = { key: 'mongodb://user:password@sciezka/dla/bazy/mlab' }".
+API
+Przed uruchomieniem aplikacji w katalogu głównym należy storzyć katalog 'config'.
+W katalogu powinny znaleźć się pliki:
+-cert.pem
+-key.pem
+-keys.js
+Schemat zawartości pliku keys.js: 
+module.exports = {
+	mongodb: {
+		mongoURL: 'adresDoBazyDanych'
+	}
+}
+
+
+Application
+Przed uruchomieniem aplikacji należy do katalogu 'config' dodać pliki konfiguracyjne.
+W katalogu powinny znaleźć się pliki:
+-cert.pem
+-key.pem
+-keys.js
+Schemat zawartości pliku keys.js: 
+module.exports = {
+	session: {
+		cookieKey: 'stringDlaCookie'
+	},
+	mongodb: {
+		mongoURL: 'adresDoBazyDanych'
+	},
+	google: {
+		clientID: 'clientID',
+		clientSecret: 'clientSecret',
+	},
+	facebook: {
+		clientID: 'clientID',
+		clientSecret: 'clientSecret',
+	}
+}
