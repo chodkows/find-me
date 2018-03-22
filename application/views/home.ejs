@@ -3,20 +3,35 @@
 	<head>
 		<meta charset="utf-8">
 		<title>FindMe</title>
-		<link href="/main-nav-style.css" rel="stylesheet" type="text/css"/>
-		<link href="/home-style.css" rel="stylesheet" type="text/css"/>
+		<link href="/styles/main-nav-style.css" rel="stylesheet" type="text/css"/>
+		<link href="/styles/home-style.css" rel="stylesheet" type="text/css"/>
+		<link href="/styles/footer.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
 	<% include main-nav %>
-		<div class="wrapper">
+		<article class="wrapper">
 			<nav class="left-nav">
-				<ul>
-					<li>cos tam</li>
-				</ul>
+				<div>
+					<h1>Find caches around you!</h1>
+				</div>
+				<form class="form">
+					<input id="lng" type="text" placeholder="longitute"/>
+					<input id="lat" type="text" placeholder="latitude"/>
+					<input id="dist" type="number" placeholder="distance [km]"/>
+					<button id="sub" type="submit">Search</button>
+				</form>
 			</nav>
 			<main class="map">
 
 			</main>
-		</div>
+			<div style="clear:both;"></div>
+			<main class="resultsList">
+				<ul id="list">
+					<li>wynik</li>
+				</ul>
+			</main>
+		</article>
+		<% include footer %>
+		<script src="js/home-page.js"></script>
 	</body>
 </html>

@@ -1,0 +1,57 @@
+body{
+	font-family: arial;
+	margin: 0;
+
+}
+.wrapper{
+	width:1200px;
+	margin: 0 auto;
+}
+/* LEFT NAVIGATION STYLES*/
+.left-nav {
+	background: #ff5353;
+	padding: 20px 10px;
+	width: 300px;
+	padding: 0;
+	margin: 0;
+	clear: both;
+	float: left;
+	height: 600px;
+	text-align: center;
+}
+.left-nav > div {
+	margin: 20px auto;
+	height:20px;
+}
+.left-nav h1 {
+	color: #fff;
+	font-size: 20px;
+}
+
+.left-nav input {
+	margin: 10px auto;
+	padding: 0;
+	border: 0;
+	width:250px;
+	height:30px;
+	color:black;
+}
+.left-nav button {
+	margin:10px auto;
+	padding: 0;
+	border: 0;
+	width:250px;
+	height: 30px;
+	background-color: #33b554;
+}
+
+/* MAP STYLES */
+.map {
+	background-color: #aaa;
+	width: 900px;
+	height:600px;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+/* RESULT LIST STYLES */

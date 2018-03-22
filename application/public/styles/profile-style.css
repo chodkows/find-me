@@ -1,0 +1,57 @@
+body{
+	font-family: arial;
+	margin: 0;
+
+}
+.wrapper{
+	width:1200px;
+	margin: 0 auto;
+}
+/* LEFT NAVIGATION STYLES*/
+.left-nav {
+	background: #ff5353;
+	padding: 20px 0;
+	width: 300px;
+	padding: 0;
+	margin: 0;
+	float: left;
+	height: 600px;
+}
+.left-nav > div {
+	margin: 20px auto;
+	min-height:20px;
+	text-align: center;
+}
+.left-nav h1 {
+	color: #fff;
+	font-size: 20px;
+}
+.left-nav div ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.left-nav .btn {
+	margin:10px auto;
+	border: 0;
+	width:250px;
+	background: rgba(255,255,255,0.2);
+	text-align: center;
+}
+.left-nav div ul .btn a{
+	padding:  10px;
+	text-decoration: none;
+	color: #fff;
+	display: block;
+}
+
+/* RESULTS LIST STYLES */
+.resultsList {
+	background-color: #aaa;
+	width: 900px;
+	height: 600px;
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+/* RESULT LIST STYLES */

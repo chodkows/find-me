@@ -20,16 +20,19 @@ const CacheSchema = new Schema({
 		type: String,
 		required: [true, 'Name field is required']
 	},
-	rank: {
-		type: String
+	size: {
+		type: String,
 	},
 	available: {
 		type: Boolean,
-		default: false
+		default: true
 	},
 	title: {
 		type: String,
 		required: [true, 'Title field is required']
+	},
+	description: {
+		type: String,
 	},
 	whoSolveList: {
 		type: [String]
