@@ -25,5 +25,5 @@ app.use((err, req, res, next) => {
 });
 
 httpsServer.listen(process.env.port || 3333,() => {
-	console.log('Server listen at 3333');
+	console.log('Api server listen at 3333');
 });

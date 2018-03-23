@@ -1,0 +1,39 @@
+.wrapper{
+	margin: 0;
+	padding: 0;
+}
+main {
+	width: 960px;
+	margin: 0 auto;
+	padding: 0;
+}
+main .message {
+	height: 30px;
+}
+main div {
+	height: 600px;
+	padding: 30px;
+}
+main div .form {
+	margin: 0 auto;
+	padding: 0;
+}
+
+main div .form input{
+	display: block;
+	width:300px;
+	margin: 10px auto;
+	height:30px;
+}
+.form textarea{
+	display: block;
+	width:300px;
+	height:80px;
+	margin: 10px auto;
+}
+.form .btn {
+	display: block;
+	margin: 30px auto;
+	width: 300px;
+	height: 30px;
+}

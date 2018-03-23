@@ -11,18 +11,24 @@
 		<% include main-nav %>
 		<article class="wrapper">
 			<main>
-				<form class="form">
-					<input id="lng" type="text" placeholder="longitute" />
-					<input id="lat" type="text" placeholder="latitude"/>
-					<input id="name" type="text" placeholder="name and surname"/>
-					<input id="rank" type="text" placeholder="size"/>
-					<input id="title" type="text" placeholder="title"/>
-					<textarea id="description" type="text" placeholder="title"></textarea>
-					<button class="btn" type="submit">Add cache</button>
-				</form>
+				<div class="message">
+					<p id="msg"></p>
+				</div>
+				<div>
+					<h1></h1>
+					<form class="form">
+						<input id="lng" type="text" placeholder="longitude" required=""/>
+						<input id="lat" type="text" placeholder="latitude" required=""/>
+						<input id="name" type="text" placeholder="name" required=""/>
+						<input id="rank" type="text" placeholder="size"/>
+						<input id="title" type="text" placeholder="title" required=""/>
+						<textarea id="description" type="text" placeholder="description"></textarea>
+						<button class="btn" type="submit">Add cache</button>
+					</form>
+				</div>
 			</main>
 		</article>
 		<% include footer %>
-		<script src="js/profile-newCache-page.js"></script>
+		<script src="/js/profile-newCache-page.js"></script>
 	</body>
 </html>
