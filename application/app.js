@@ -46,3 +46,6 @@ app.use('/profile', profileRoutes);
 app.get('/', (req, res) => {
 	res.render('home', {user: req.user});
 });
+// app.get('/', (req, res) => {
+// 	res.json(req.user);
+// });

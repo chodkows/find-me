@@ -10,11 +10,14 @@ const authCheck = (req, res, next) => {
 }
 
 router.get('/', authCheck, (req, res) => {
-	res.render('profile', {user: req.user});
+	res.render('profile',{user: req.user});
 });
 
 router.get('/new-cache', authCheck, (req, res) => {
+	console.log(req.user);
 	res.render('profile-newCache', {user: req.user});
 });
+
+
 
 module.exports = router;
