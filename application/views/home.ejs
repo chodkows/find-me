@@ -14,11 +14,18 @@
 				<div>
 					<h1>Find geocaches around you!</h1>
 				</div>
-				<form class="form">
+				<form id="formCoords">
+
 					<input id="lng" type="text" placeholder="longitute"/>
 					<input id="lat" type="text" placeholder="latitude"/>
-					<input id="dist" type="number" placeholder="distance [km]"/>
-					<button id="sub" type="submit">Search</button>
+
+					<button type="submit">Search</button>
+				</form>
+				<form id="formAuthorOrTitle">
+					<input type="text" id="author" placeholder="author">
+					<p>or</p>
+					<input type="text" id="title" placeholder="title">
+					<button type="submit">Search</button>
 				</form>
 			</nav>
 			<main class="sheet">
@@ -26,7 +33,11 @@
 			</main>
 			<div style="clear:both;"></div>
 			<main class="resultsList">
-				<ul id="list">	</ul>
+				<div>
+					<h1>RESULTS OF SEARCHING:</h1>
+					<ul id="list"></ul>
+				</div>
+
 			</main>
 		</article>
 		<% include footer %>
