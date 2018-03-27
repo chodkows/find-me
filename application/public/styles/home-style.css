@@ -47,6 +47,37 @@ body{
 	width:250px;
 	height: 30px;
 	background-color: #33b554;
+	color: #fff;
+	cursor: pointer;
+}
+.left-nav button:hover {
+	border: 2px solid green;
+	cursor: pointer;
+}
+
+input.valid{
+	border: 2px solid #36cc36;
+}
+
+input.invalid {
+	border: 2px solid #800000;
+}
+
+input + p {
+	font-family: arial;
+	font-size: 0.9em;
+	font-weight: bold;
+	text-align: center;
+	margin: 0 10px;
+	color: orange;
+	opacity: 0;
+	height: 0;
+}
+
+input.invalid + p {
+	opacity: 1;
+	height:auto;
+	margin-bottom: 20px;
 }
 
 /* MAP STYLES */

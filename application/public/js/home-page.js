@@ -6,9 +6,18 @@ document.addEventListener('DOMContentLoaded', () => {
 	const formCoords = document.querySelector('#formCoords');
 	const formAuthorOrTitle = document.querySelector('#formAuthorOrTitle');
 	const resultList = document.querySelector('#list');
+	const inputs = document.querySelectorAll('input');
 	const initialLng = 50.06143;
 	const initialLat = 19.93658;
 
+/*
+**		events for inputs for validation
+*/
+	inputs.forEach( input => {
+		input.addEventListener('keyup', (e) => {
+			validate(e.target, patterns[e.target.attributes.name.value])
+		});
+	});
 
 /*
 **		Initialization of map
@@ -38,6 +47,30 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
+/*
+**		validation patterns
+*/
+const patterns = {
+	longitute: /^(-?1?([0-9]?\d)(\.\d{1,10})?|(-?180))$/,
+	latitude: /^((-?([1-8]?\d)(\.\d{1,10})?)|(-?90?))$/,
+	author: /\w{5,20}/g,
+	title: /\w{5,40}/g
+}
+
+/*
+**		checking fields are valid
+*/
+function validate(field, regex) {
+	if(field.value === ""){
+		field.removeAttribute('class','invalid')
+	} else {
+		if(regex.test(field.value)){
+			field.className = 'valid'
+		} else {
+			field.className = 'invalid';
+		}
+	}
+}
 
 /*
 **		searchin for coordinates
@@ -196,8 +229,7 @@ function addLiToUl(data, resultList){
 		const li = document.createElement('li');
 		const span = document.createElement('span');
 		const a = document.createElement('a');
-		span.innerText = `Available: ${item.available},
-		author: ${item.name}, title of mystery: ${item.title}`;
+		span.innerText = `Author: ${item.name}, title: ${item.title}, available: ${item.available}`;
 		a.setAttribute('href', '#');
 		a.setAttribute('target','_blank');
 		a.appendChild(span)

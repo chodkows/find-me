@@ -22,18 +22,40 @@ main .message #msg.display-no {
 }
 
 /**
-**		form
+**		leftSite
 */
-main div {
+.leftSite{
+	float: left;
+	width: 450px;
 	height: 600px;
-	padding: 30px;
+	margin: 0;
+	padding: 0;
 }
-main div .form {
+.leftSite div {
+	box-sizing: border-box;
+	padding: 20px;
+}
+.leftSite div p{
+	margin: 25px 0;
+}
+
+/**
+**		rightSite - form
+*/
+.rightSite {
+	float: left;
+	width: 450px;
+	height: 600px;
+	padding: 0;
+	text-align: center;
+}
+
+.rightSite .form {
 	margin: 0 auto;
 	padding: 0;
 }
 
-main div .form input{
+.rightSite .form input{
 	display: block;
 	width:300px;
 	margin: 10px auto;

@@ -1,35 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Cache = require('../models/cache');
-const {check, validationResult} = require('express-validator/check');
-
-exports.validate = [
-	check('name').trim().isLength({ min:1 }).withMessage('Name is required')
-];
-exports.checkValidation = (req,res, next) => {
-	const errors = validationResult(req);
-
-	if( !errors.isEmpty()) {
-		return res.render('home', {
-			validated: req.body,
-			errors: errors.mapped(),
-			showLightbox: 'true',
-		});
-	}
-	next();
-}
 
 router.post('/caches/user', (req, res, next) => {
 	Cache.find({name: req.body.name}).then( data => {
 		res.json(data);
-		console.log(data);
 	}).catch(err => console.log(err))
 });
 /*
 **		sharing data by author
 */
 router.get('/caches/author', (req, res, next) => {
-	console.log(req.query.author);
 	Cache.find({name: req.query.author}).then( data => {
 		res.json(data);
 	}).catch(err => console.log(err))

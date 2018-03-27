@@ -9,7 +9,6 @@ router.get('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
 	req.logout();
-	// res.render('home', { user: req.user });
 	res.render('home', {user: req.user});
 });
 
