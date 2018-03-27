@@ -98,3 +98,8 @@ input.invalid + p {
 	height:auto;
 	margin-bottom: 20px;
 }
+select {
+	height: 30px;
+	width: 300px;
+	color: rgba(0,0,0,0.7);
+}

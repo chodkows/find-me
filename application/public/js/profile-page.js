@@ -6,7 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	fetch(`https://localhost:3333/api/caches/author?author=${username.innerText}`)
 	.then(data => data.json())
 	.then(data => {
-		console.log(data);
 		addLiToUl(data, list);
 	});
 
@@ -28,10 +27,11 @@ function addLiToUl(data, resultList){
 		a1.classList.add('description')
 		a2.innerText='Edit geocache';
 		a2.classList.add('btn');
-		a2.setAttribute('href','/profile/edit-cache');
+		a2.setAttribute('href',`/profile/edit-cache?id=${item._id}`);
+		a2.setAttribute('data-id',item._id);
 		a3.innerText='Delete geocache';
 		a3.classList.add('btn');
-		a3.setAttribute('href','/profile/delete-cache');
+		a3.setAttribute('href','#');
 		li.appendChild(a1);
 		li.appendChild(a2);
 		li.appendChild(a3);

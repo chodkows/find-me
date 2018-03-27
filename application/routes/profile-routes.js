@@ -18,7 +18,10 @@ router.get('/new-cache', authCheck, (req, res) => {
 });
 
 router.get('/edit-cache', authCheck, (req, res) => {
-	res.render('profile-editCache', {user: req.user});
+	res.render('profile-editCache', {
+		user: req.user,
+		id: req.query.id
+	});
 });
 
 router.get('/delete-cache', authCheck, (req, res) => {

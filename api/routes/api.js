@@ -16,6 +16,14 @@ router.get('/caches/author', (req, res, next) => {
 	}).catch(err => console.log(err))
 });
 /*
+**		find by id
+*/
+router.get('/caches/id', (req, res, next) => {
+	Cache.findById({_id: req.query.id}).then( data => {
+		res.json(data);
+	}).catch(err => console.log(err))
+});
+/*
 **		sharing data by author
 */
 router.get('/caches/title', (req, res, next) => {
@@ -48,7 +56,7 @@ router.post('/caches', (req, res, next) => {
 
 router.put('/caches/:id', (req, res, next) => {
 	Cache.findByIdAndUpdate({_id: req.params.id},req.body).then(() => {
-		Ninja.findOne({_id: req.params.id}).then(cache => {
+		Cache.findOne({_id: req.params.id}).then(cache => {
 			res.send(cache);
 		});
 	});
