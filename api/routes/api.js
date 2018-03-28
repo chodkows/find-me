@@ -57,8 +57,9 @@ router.post('/caches', (req, res, next) => {
 router.put('/caches/:id', (req, res, next) => {
 	Cache.findByIdAndUpdate({_id: req.params.id},req.body).then(() => {
 		Cache.findOne({_id: req.params.id}).then(cache => {
+			console.log(cache);
 			res.send(cache);
-		});
+		}).catch(err => console.log(err));
 	});
 });
 

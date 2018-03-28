@@ -19,32 +19,47 @@ document.addEventListener('DOMContentLoaded',() => {
 
 	message.className="display-no";
 
-	fetch(`https://localhost:3333/api/caches/id?id=${id.innerText}`)
-	.then(res => res.json())
-	.then(res => {
-		console.log(res);
-		prepareLeftSite(res);
-	}).catch(err => console.log(err));
+	prepareLeftSite();
+	// fetch(`https://localhost:3333/api/caches/id?id=${id.innerText}`)
+	// .then(res => res.json())
+	// .then(res => {
+	// 	console.log(res);
+	// 	prepareLeftSite(res);
+	// }).catch(err => console.log(err));
 
 	form.addEventListener('submit', (e) => {
 		e.preventDefault();
-		
-		const obj = {
-			available: available.value,
-			rank: size.value,
-			title: title.value,
-			description: description.value,
-			geometry:{
+
+		const obj = {};
+		obj.available = available.value;
+		obj.size = size.value;
+		if(title.value !== "") {obj.title = title.value;}
+		if(description.value !== "") {obj.description = description.value;}
+		if(lng.value !== "" && lat.value!== "") {
+			obj.geometry = {
 				type: "point",
 				coordinates: [lng.value, lat.value]
 			}
 		}
+
+		// const obj = {
+		// 	available: available.value,
+		// 	size: size.value,
+		// 	title: title.value,
+		// 	description: description.value,
+		// 	geometry:{
+		// 		type: "point",
+		// 		coordinates: [lng.value, lat.value]
+		// 	}
+		// }
 		console.log(obj);
 
-		// sendDataToServer(obj, id.innerText).then(res => {
-		// 	message.className="display";
-		// 	clearField(lng, lat, name, rank, title, description);
-		// })
+		sendDataToServer(obj, id.innerText).then(res => {
+			message.className="display";
+			clearField(lng, lat, title, description);
+			location.reload();
+			prepareLeftSite();
+		})
 	});
 
 
@@ -55,34 +70,40 @@ document.addEventListener('DOMContentLoaded',() => {
 	});
 });
 
-function prepareLeftSite(data) {
-	const lng = document.querySelector('#lngPrev');
-	const lat = document.querySelector('#latPrev');
-	const size = document.querySelector('#rankPrev');
-	const title = document.querySelector('#titlePrev');
-	const available = document.querySelector('#availablePrev');
-	const descripton = document.querySelector('#descriptionPrev');
 
-	let span1 = document.createElement('span');
-	span1.innerText = data.geometry.coordinates[0];
-	lng.appendChild(span1);
-	let span2 = document.createElement('span');
-	span2.innerText = data.geometry.coordinates[1];
-	lat.appendChild(span2);
-	let span4 = document.createElement('span');
-	span4.innerText = data.size;
-	size.appendChild(span4);
-	let span5 = document.createElement('span');
-	span5.innerText = data.title;
-	title.appendChild(span5);
-	let span6 = document.createElement('span');
-	span6.innerText = data.available;
-	available.appendChild(span6);
-	let span7 = document.createElement('span');
-	span7.innerText = data.description;
-	descripton.appendChild(span7);
+function prepareLeftSite() {
 
+	fetch(`https://localhost:3333/api/caches/id?id=${id.innerText}`)
+	.then(res => res.json())
+	.then(data => {
 
+		console.log(data);
+		const lng = document.querySelector('#lngPrev');
+		const lat = document.querySelector('#latPrev');
+		const size = document.querySelector('#rankPrev');
+		const title = document.querySelector('#titlePrev');
+		const available = document.querySelector('#availablePrev');
+		const descripton = document.querySelector('#descriptionPrev');
+
+		let span1 = document.createElement('span');
+		span1.innerText = data.geometry.coordinates[0];
+		lng.appendChild(span1);
+		let span2 = document.createElement('span');
+		span2.innerText = data.geometry.coordinates[1];
+		lat.appendChild(span2);
+		let span4 = document.createElement('span');
+		span4.innerText = data.size;
+		size.appendChild(span4);
+		let span5 = document.createElement('span');
+		span5.innerText = data.title;
+		title.appendChild(span5);
+		let span6 = document.createElement('span');
+		span6.innerText = data.available;
+		available.appendChild(span6);
+		let span7 = document.createElement('span');
+		span7.innerText = data.description;
+		descripton.appendChild(span7);
+	}).catch(err => console.log(err));
 }
 
 function validate(field, regex) {

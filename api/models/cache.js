@@ -47,7 +47,7 @@ module.exports = Cache;
 /*
 	{
 		"name":"Hitaki",
-		"rank":"big cache",
+		"size":"big cache",
 		"available":true,
 		"title": "green fresh",
 		"whoSolveList": [],
