@@ -23,7 +23,9 @@ app.use('/api', routes);
 app.use((err, req, res, next) => {
 	res.status(422).send({error: err.message});
 });
-
+// app.listen(3333);
 httpsServer.listen(process.env.port || 3333,() => {
 	console.log('Api server listen at 3333');
 });
+
+module.exports = app; //for testing
