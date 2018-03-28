@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
 const patterns = {
 	longitute: /^(-?1?([0-9]?\d)(\.\d{1,10})?|(-?180))$/,
 	latitude: /^((-?([1-8]?\d)(\.\d{1,10})?)|(-?90?))$/,
-	author: /\w{5,20}/g,
-	title: /\w{5,40}/g
+	author: /[a-zA-Z0-9\s]{5,40}/,
+	title: /[a-zA-Z0-9\s]{5,40}/,
 }
 
 /*
@@ -92,16 +92,12 @@ function lookForAuthorOrTitle(author, title, resultList) {
 	if(author && author !== ""){
 		sendAuthorToServer(author)
 		.then( data => {
-			console.log(data);
-
 			addLiToUl(data, resultList);
 		});
 	}
 	if(title && title !== ""){
 		sendTitleToServer(title)
 		.then(data => {
-			console.log(data);
-
 			addLiToUl(data, resultList);
 		});
 	}
@@ -132,7 +128,7 @@ function prepareMarkers(data) {
 			content: `<h3>${obj.title}</h3>
 			<p>Author: ${obj.name}</br>
 			Available: ${obj.available}</br>
-			Rank: ${obj.rank}</br>
+			Size: ${obj.size}</br>
 			Coordinates: ${obj.geometry.coordinates[1]}, ${obj.geometry.coordinates[0]}</p>`
 		});
 	});
@@ -186,7 +182,7 @@ function clearMarkers() {
 function initMap(markers, lng, lat) {
 	const options ={
 		zoom: 12,
-		center: { lng: lng , lat: lat }
+		center: { lng: parseFloat(lng) , lat: parseFloat(lat) }
 	}
 	map = new google.maps.Map(document.querySelector('#map'), options);
 	prepareMarkersOnDragStart();
@@ -198,7 +194,7 @@ function initMap(markers, lng, lat) {
 **		preparing markers when map is dragged
 */
 function prepareMarkersOnDragStart(){
-	google.maps.event.addListener(map, 'dragstart', (event)=>{
+	google.maps.event.addListener(map, 'click', (event)=>{
 		const lat =  event.latLng.lat;
 		const lng =  event.latLng.lng;
 		sendCoordsToServer(lng(), lat())

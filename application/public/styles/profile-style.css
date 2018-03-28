@@ -105,3 +105,13 @@ body{
 	cursor: pointer;
 	background: #aa5353;
 }
+
+/*
+**		deleteAlert
+*/
+.hidden{
+	display: none;
+}
+.visible{
+	display: block;
+}

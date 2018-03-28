@@ -15,19 +15,27 @@
 					<p id="msg">Added new geocache</p>
 				</div>
 				<div>
-					<h1></h1>
+					<h1 id="username" style="display: none;"><%= user.username %></h1>
 					<form class="form">
-						<input id="lng" type="text" name="longitude" placeholder="longitude" required=""/>
+						<input id="lat" type="text" name="latitude" placeholder="latitude"/>
 						<p>Field must contain number as pattern 123.0123456789</p>
-						<input id="lat" type="text" name="latitude" placeholder="latitude" required=""/>
+						<input id="lng" type="text" name="longitude" placeholder="longitude"/>
 						<p>Field must contain number as pattern 89.0123456789</p>
-						<input id="name" type="text" name="author" placeholder="author" required=""/>
-						<p>Field must contain 5 - 20 characters</p>
-						<input id="rank" type="text" name="rank" placeholder="size"/>
-						<input id="title" type="text" name="title" placeholder="title" required=""/>
+						<select id="size" name="size">
+						  <option value="extra small">Size: extra small</option>
+						  <option value="small">Size: small</option>
+						  <option value="medium">Size: medium</option>
+						  <option value="large">Size: large</option>
+						  <option value="extra large">Size: extra large</option>
+						</select>
+						<input id="title" type="text" name="title" placeholder="title"/>
 						<p>Field must contain 5 - 40 characters</p>
-						<textarea id="description" type="text" name="description" placeholder="description"></textarea>
-						<button class="btn" type="submit">Add cache</button>
+						<textarea id="description" type="text" placeholder="description"></textarea>
+						<select id="available" name="abailable">
+						  <option value="true">Available- yes</option>
+						  <option value="false">Available- no</option>
+						</select>
+						<button class="btn" type="submit">Add change</button>
 					</form>
 				</div>
 			</main>

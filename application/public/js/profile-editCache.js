@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded',() => {
 		if(lng.value !== "" && lat.value!== "") {
 			obj.geometry = {
 				type: "point",
-				coordinates: [lng.value, lat.value]
+				coordinates: [lat.value, lng.value]
 			}
 		}
 
