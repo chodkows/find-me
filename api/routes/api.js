@@ -25,7 +25,7 @@ router.get('/caches/id', (req, res, next) => {
 			res.json(data);
 		})
 		.catch(err => {
-			res.send(err);
+			res.send({msg: 'Bad ID'});
 		});
 });
 
@@ -61,9 +61,9 @@ router.get('/caches/near', (req, res, next) => {
 
 		})
 		.catch(err =>  {
-			res.send(err);
+			res.send({ msg: 'Bad cooridates. Found nothing.'});
 		});
-	
+
 });
 
 /*		ok

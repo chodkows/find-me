@@ -23,8 +23,8 @@ describe('Cache', () => {
 	/*
 	**		Test the /GET route **search caches by author**
 	*/
-	describe('GET/api/caches/title', () => {
-		it('should GET all the caches of author', done => {
+	describe('GET/api/caches/author', () => {
+		it('should GET empty array', done => {
 			chai.request(server)
 			.get(`/api/caches/author?author=Wojciech Chodkowski`)
 			.end((err, res) => {
@@ -34,12 +34,40 @@ describe('Cache', () => {
 				done();
 			});
 		});
+		it('should GET all the caches ', (done) => {
+		 	new Cache({
+				name: "Wojtek",
+				size: "small",
+				title: "title",
+				description: "description",
+				available: true,
+				geometry:{
+					type: "point",
+					coordinates: [-50, 20]
+				}
+			}).save((err,cache) => {
+				chai.request(server)
+				.get('/api/caches/author?author=Wojtek')
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('array');
+					res.body.length.should.be.eql(1);
+					res.body[0].should.have.property('name').eql(cache.name);
+					res.body[0].should.have.property('size').eql(cache.size);
+					res.body[0].should.have.property('title').eql(cache.title);
+					res.body[0].should.have.property('description').eql(cache.description);
+					res.body[0].should.have.property('available').eql(cache.available);
+					res.body[0].should.have.property('geometry');
+					done();
+				});
+			});
+		});
 	});
 	/*
 	**		Test the /GET route- **search caches by title**
 	*/
 	describe('GET/api/caches/title', () => {
-		it('should GET all the caches of title', done => {
+		it('should GET empty array', done => {
 			chai.request(server)
 			.get(`/api/caches/title?title?title=blue fresh`)
 			.end((err, res) => {
@@ -49,6 +77,35 @@ describe('Cache', () => {
 				done();
 			});
 		});
+		it('should GET all the caches ', (done) => {
+		 	new Cache({
+				name: "Wojtek",
+				size: "small",
+				title: "title",
+				description: "description",
+				available: true,
+				geometry:{
+					type: "point",
+					coordinates: [-50, 20]
+				}
+			}).save((err,cache) => {
+				chai.request(server)
+				.get('/api/caches/title?title=title')
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('array');
+					res.body.length.should.be.eql(1);
+					res.body[0].should.have.property('name').eql(cache.name);
+					res.body[0].should.have.property('size').eql(cache.size);
+					res.body[0].should.have.property('title').eql(cache.title);
+					res.body[0].should.have.property('description').eql(cache.description);
+					res.body[0].should.have.property('available').eql(cache.available);
+					res.body[0].should.have.property('geometry');
+					done();
+				});
+			});
+		});
+
 	});
 	/*
 	**		Test the /GET route- **search caches by id**
@@ -60,7 +117,35 @@ describe('Cache', () => {
 			.end((err,res) => {
 				res.should.have.status(200);
 				res.body.should.be.a('object');
+				res.body.should.have.property('msg').eql("Bad ID");
 				done();
+			});
+		});
+		it('should GET all the caches ', (done) => {
+		 	new Cache({
+				name: "Wojtek",
+				size: "small",
+				title: "title",
+				description: "description",
+				available: true,
+				geometry:{
+					type: "point",
+					coordinates: [-50, 20]
+				}
+			}).save((err,cache) => {
+				chai.request(server)
+				.get(`/api/caches/id?id=${cache.id}`)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('object');
+					res.body.should.have.property('name').eql(cache.name);
+					res.body.should.have.property('size').eql(cache.size);
+					res.body.should.have.property('title').eql(cache.title);
+					res.body.should.have.property('description').eql(cache.description);
+					res.body.should.have.property('available').eql(cache.available);
+					res.body.should.have.property('geometry');
+					done();
+				});
 			});
 		});
 	});
@@ -69,13 +154,42 @@ describe('Cache', () => {
 	**		Test the /GET route- **search caches by maxDistance
 	*/
 	describe('GET/api/caches/near', () => {
-		it('should GET caches by max distance', done => {
+		it('should GET obiect with empty array', done => {
 			chai.request(server)
-			.get(`/api/caches/near`)
+			.get(`/api/caches/near?lng=50&lat=20`)
 			.end((err, res) => {
 				res.should.have.status(200);
-				res.body.should.be.a('object');
+				res.body.should.be.a('array');
+				res.body.length.should.be.eql(0);
 				done();
+			});
+		});
+		it('should GET all the caches ', (done) => {
+		 	new Cache({
+				name: "Wojtek",
+				size: "small",
+				title: "title",
+				description: "description",
+				available: true,
+				geometry:{
+					type: "point",
+					coordinates: [-50, 20]
+				}
+			}).save((err,cache) => {
+				chai.request(server)
+				.get(`/api/caches/near?lng=${cache.geometry.coordinates[0]}&lat=${cache.geometry.coordinates[1]}`)
+				.end((err, res) => {
+					res.should.have.status(200);
+					res.body.should.be.a('array');
+					res.body.length.should.be.eql(1);
+					res.body[0].should.have.property('name').eql(cache.name);
+					res.body[0].should.have.property('size').eql(cache.size);
+					res.body[0].should.have.property('title').eql(cache.title);
+					res.body[0].should.have.property('description').eql(cache.description);
+					res.body[0].should.have.property('available').eql(cache.available);
+					res.body[0].should.have.property('geometry');
+					done();
+				});
 			});
 		});
 	});
@@ -142,7 +256,7 @@ describe('Cache', () => {
 	*/
 	describe('PUT/api/caches/:id', () => {
 		it('should update a cache given the id', done => {
-			const cache = new Cache({
+			new Cache({
 				name: "author",
 				size: "small",
 				title: "title",
@@ -152,8 +266,7 @@ describe('Cache', () => {
 					type: "point",
 					coordinates: [-50, 20]
 				}
-			})
-			cache.save((err, cache) => {
+			}).save((err, cache) => {
 				chai.request(server)
 				.put('/api/caches/'+cache.id)
 				.send({size: 'extra large', available: false})
@@ -172,7 +285,7 @@ describe('Cache', () => {
 	*/
 	describe('DELETE/api/caches/:id', () => {
 		it('should delete a cache given the id', done => {
-			const cache = new Cache({
+			new Cache({
 				name: "author",
 				size: "small",
 				title: "title",
@@ -182,8 +295,7 @@ describe('Cache', () => {
 					type: "point",
 					coordinates: [-50, 20]
 				}
-			})
-			cache.save((err, cache) => {
+			}).save((err, cache) => {
 				chai.request(server)
 				.delete('/api/caches/'+cache.id)
 				.end((err, res) => {
@@ -196,4 +308,6 @@ describe('Cache', () => {
 			});
 		});
 	});
+
+
 });

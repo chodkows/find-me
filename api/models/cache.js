@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const key = require('../config/keyTest');
+const key = require('../config/key');
 
 mongoose.connect(key.key);
 
