@@ -11,7 +11,6 @@ const passportFacebookSetup = require('./config/passport-facebook-setup');
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
 const passport = require('passport');
-// const cors = require('cors');
 
 //keys
 const privateKey = fs.readFileSync('./config/key.pem', 'utf8');

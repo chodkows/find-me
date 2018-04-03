@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	const inputs = document.querySelectorAll('input');
 	const initialLng = 50.06143;
 	const initialLat = 19.93658;
+	const user = document.querySelector('#user');
+
 
 /*
 **		events for inputs for validation
@@ -45,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		lookForAuthorOrTitle(authorName, titleOfCache, resultList);
 		clearField(title, author);
 	});
+
+	// prepareButtonInMarkers();
 });
 
 /*
@@ -81,7 +85,6 @@ function lookForLatLng(lat ,lng) {
 		console.log(data);
 		const markers = prepareMarkers(data);
 		initMap(markers, parseFloat(lng), parseFloat(lat));
-		// addLiToUl(data, resultList);
 	});
 }
 
@@ -118,18 +121,20 @@ function initializeMap(initLat, initLng){
 **		preparing markers for @initMap
 */
 function prepareMarkers(data) {
+	const user = document.querySelector('#user');
 	const array = [];
 	data.forEach(obj => {
-		array.push({
-			coords: {
-				lng:obj.geometry.coordinates[0],
-				lat: obj.geometry.coordinates[1]
-			},
-			content: `<h3>${obj.title}</h3>
-			<p>Author: ${obj.name}</br>
-			Available: ${obj.available}</br>
-			Size: ${obj.size}</br>
-			Coordinates: ${obj.geometry.coordinates[1]}, ${obj.geometry.coordinates[0]}</p>`
+			array.push({
+				coords: {
+					lng:obj.geometry.coordinates[0],
+					lat: obj.geometry.coordinates[1]
+				},
+				content: `<h3>${obj.title}</h3>
+				<p>Author: ${obj.name}</br>
+				Available: ${obj.available}</br>
+				Size: ${obj.size}</br>
+				Coordinates: ${obj.geometry.coordinates[1]}, ${obj.geometry.coordinates[0]}</p>`
+
 		});
 	});
 	return array;
@@ -185,7 +190,7 @@ function initMap(markers, lng, lat) {
 		center: { lng: parseFloat(lng) , lat: parseFloat(lat) }
 	}
 	map = new google.maps.Map(document.querySelector('#map'), options);
-	prepareMarkersOnDragStart();
+	prepareMarkersOnClick();
 	if(markers){
 		addMarkers(markers);
 	}
@@ -193,17 +198,20 @@ function initMap(markers, lng, lat) {
 /*
 **		preparing markers when map is dragged
 */
-function prepareMarkersOnDragStart(){
+function prepareMarkersOnClick(){
 	google.maps.event.addListener(map, 'click', (event)=>{
 		const lat =  event.latLng.lat;
 		const lng =  event.latLng.lng;
 		sendCoordsToServer(lng(), lat())
 		.then(data => {
-			const markers = prepareMarkers(data);
-			clearMarkers();
-			if(markers){
-				addMarkers(markers);
-			}
+			data.forEach(obj => {
+				const markers = prepareMarkers(data);
+				clearMarkers();
+				if(markers){
+					addMarkers(markers);
+
+				}
+			});
 		});
 	});
 }
@@ -248,7 +256,7 @@ function clearField(...args){
 */
 function sendCoordsToServer(lng, lat){
 	return new Promise((resolve, reject) => {
-		fetch(`https://localhost:3333/api/caches/near?lng=${lng}&lat=${lat}`)
+		fetch(`http://localhost:3333/api/caches/near?lng=${lng}&lat=${lat}`)
 		.then(res => res.json())
 			.then(data => {
 				resolve(data);
@@ -261,7 +269,7 @@ function sendCoordsToServer(lng, lat){
 */
 function sendAuthorToServer(author){
 	return new Promise((resolve, reject) => {
-		fetch(`https://localhost:3333/api/caches/author?author=${author}`)
+		fetch(`http://localhost:3333/api/caches/author?author=${author}`)
 		.then(res => res.json())
 			.then(data => {
 				console.log(data);
@@ -275,7 +283,7 @@ function sendAuthorToServer(author){
 */
 function sendTitleToServer(title){
 	return new Promise((resolve, reject) => {
-		fetch(`https://localhost:3333/api/caches/title?title=${title}`)
+		fetch(`http://localhost:3333/api/caches/title?title=${title}`)
 		.then(res => res.json())
 			.then(data => {
 				resolve(data);

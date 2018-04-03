@@ -3,7 +3,7 @@ const Regex = require('regex');
 const router = express.Router();
 const Cache = require('../models/cache');
 
-/*		ok
+/*		
 **		search caches by author
 */
 router.get('/caches/author', (req, res, next) => {
@@ -15,7 +15,7 @@ router.get('/caches/author', (req, res, next) => {
 		.catch(err => console.log(err))
 });
 
-/*		ok
+/*
 **		search caches by id
 */
 router.get('/caches/id', (req, res, next) => {
@@ -29,7 +29,7 @@ router.get('/caches/id', (req, res, next) => {
 		});
 });
 
-/*		ok
+/*
 **		search caches by title
 */
 router.get('/caches/title', (req, res, next) => {
@@ -66,7 +66,7 @@ router.get('/caches/near', (req, res, next) => {
 
 });
 
-/*		ok
+/*
 **		create new cache
 */
 router.post('/caches', (req, res, next) => {
@@ -78,7 +78,7 @@ router.post('/caches', (req, res, next) => {
 		.catch(err => res.send(err));
 });
 
-/*		ok
+/*
 **		update cache
 */
 router.put('/caches/:id', (req, res, next) => {
@@ -93,7 +93,7 @@ router.put('/caches/:id', (req, res, next) => {
 		});
 });
 
-/*		ok
+/*
 **		delete cache
 */
 router.delete('/caches/:id', (req, res, next) => {

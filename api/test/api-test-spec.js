@@ -14,6 +14,10 @@ chai.use(chaiHttp);
 **		main block
 */
 describe('Cache', () => {
+
+	/*
+	**		Before tests prepare test db
+	*/
 	beforeEach( done => {
 		Cache.remove({}, err => {
 			done();

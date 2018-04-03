@@ -70,7 +70,7 @@ const clearField = (...args) => {
 
 const sendDataToServer = (obj) => {
 	return new Promise((resolve, reject) => {
-		fetch('https://localhost:3333/api/caches', {
+		fetch('http://localhost:3333/api/caches', {
 			method: 'POST',
 			headers: { 'Content-Type':'application/json'},
 			body: JSON.stringify(obj)

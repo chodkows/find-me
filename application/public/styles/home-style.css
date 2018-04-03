@@ -140,3 +140,9 @@ input.invalid + p {
 	background-color: #242424;
 	cursor: pointer;
 }
+.visible{
+	display: block;
+}
+.hidden{
+	display: none;
+}

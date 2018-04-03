@@ -17,9 +17,9 @@
 				<div>
 					<h1 id="username" style="display: none;"><%= user.username %></h1>
 					<form class="form">
-						<input id="lat" type="text" name="latitude" placeholder="latitude"/>
+						<input id="lat" type="text" name="latitude" placeholder="latitude" required/>
 						<p>Field must contain number as pattern 123.0123456789</p>
-						<input id="lng" type="text" name="longitude" placeholder="longitude"/>
+						<input id="lng" type="text" name="longitude" placeholder="longitude" required/>
 						<p>Field must contain number as pattern 89.0123456789</p>
 						<select id="size" name="size">
 						  <option value="extra small">Size: extra small</option>
@@ -28,7 +28,7 @@
 						  <option value="large">Size: large</option>
 						  <option value="extra large">Size: extra large</option>
 						</select>
-						<input id="title" type="text" name="title" placeholder="title"/>
+						<input id="title" type="text" name="title" placeholder="title" required/>
 						<p>Field must contain 5 - 40 characters</p>
 						<textarea id="description" type="text" placeholder="description"></textarea>
 						<select id="available" name="abailable">

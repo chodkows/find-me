@@ -27,7 +27,7 @@ function prepareDeleteNoConfirmationButton(noBtn) {
 function prepareDeleteYesConfirmationButton(yesBtn) {
 	yesBtn.addEventListener('click', e => {
 		e.preventDefault();
-		fetch(`https://localhost:3333/api/caches/${e.target.dataset.id}`,{
+		fetch(`http://localhost:3333/api/caches/${e.target.dataset.id}`,{
 			method:"DELETE"
 		}).then(res => res.json())
 		.then(res => {
@@ -42,7 +42,7 @@ function prepareDeleteYesConfirmationButton(yesBtn) {
 **		@prepareList preparing list of all items in user profile
 */
 function prepareList(list) {
-	fetch(`https://localhost:3333/api/caches/author?author=${username.innerText}`)
+	fetch(`http://localhost:3333/api/caches/author?author=${username.innerText}`)
 	.then(data => data.json())
 	.then(data => {
 		addLiToUl(data, list);

@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded',() => {
 
 function prepareLeftSite() {
 
-	fetch(`https://localhost:3333/api/caches/id?id=${id.innerText}`)
+	fetch(`http://localhost:3333/api/caches/id?id=${id.innerText}`)
 	.then(res => res.json())
 	.then(data => {
 
